@@ -56,6 +56,8 @@
 		49E803CB21868A310001B47A /* OperationStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E803CA21868A310001B47A /* OperationStateTests.swift */; };
 		49E803CC21868A310001B47A /* OperationStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E803CA21868A310001B47A /* OperationStateTests.swift */; };
 		49E803CD21868A310001B47A /* OperationStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E803CA21868A310001B47A /* OperationStateTests.swift */; };
+		A1576B6225469A48007E711E /* ResultBufferedOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576B6125469A48007E711E /* ResultBufferedOperation.swift */; };
+		A1576B6B25469A6A007E711E /* ConcurrentBufferedOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576B6A25469A6A007E711E /* ConcurrentBufferedOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		49C7BCC11F26938F00F4FFBC /* Queuer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queuer.h; sourceTree = "<group>"; };
 		49E803C5217FE8E80001B47A /* OperationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationState.swift; sourceTree = "<group>"; };
 		49E803CA21868A310001B47A /* OperationStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationStateTests.swift; sourceTree = "<group>"; };
+		A1576B6125469A48007E711E /* ResultBufferedOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBufferedOperation.swift; sourceTree = "<group>"; };
+		A1576B6A25469A6A007E711E /* ConcurrentBufferedOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentBufferedOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 		49C7BCBA1F26938F00F4FFBC /* Queuer */ = {
 			isa = PBXGroup;
 			children = (
+				A1576B6025469A36007E711E /* BufferedOperation */,
 				49C7BCBB1F26938F00F4FFBC /* ConcurrentOperation.swift */,
 				49E803C5217FE8E80001B47A /* OperationState.swift */,
 				49C7BCBC1F26938F00F4FFBC /* Queuer.swift */,
@@ -229,6 +234,15 @@
 				49C7BCBF1F26938F00F4FFBC /* SynchronousOperation.swift */,
 			);
 			path = Queuer;
+			sourceTree = "<group>";
+		};
+		A1576B6025469A36007E711E /* BufferedOperation */ = {
+			isa = PBXGroup;
+			children = (
+				A1576B6125469A48007E711E /* ResultBufferedOperation.swift */,
+				A1576B6A25469A6A007E711E /* ConcurrentBufferedOperation.swift */,
+			);
+			path = BufferedOperation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +563,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1576B6225469A48007E711E /* ResultBufferedOperation.swift in Sources */,
+				A1576B6B25469A6A007E711E /* ConcurrentBufferedOperation.swift in Sources */,
 				49C7BCCE1F26938F00F4FFBC /* ConcurrentOperation.swift in Sources */,
 				49C7BCD21F26938F00F4FFBC /* SynchronousOperation.swift in Sources */,
 				49C7BCCF1F26938F00F4FFBC /* Queuer.swift in Sources */,
