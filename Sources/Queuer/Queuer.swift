@@ -115,6 +115,8 @@ public class Queuer {
     public func waitUntilAllOperationsAreFinished() {
         queue.waitUntilAllOperationsAreFinished()
     }
+    
+    private var _completionHandler: ((ConcurrentOperation) -> Void)?
 }
 
 // MARK: - Queuer Operations and Chaining
@@ -145,7 +147,7 @@ public extension Queuer {
     ///   - operations: `Operation`s Array.
     ///   - completionHandler: Completion block to be exectuted when all `Operation`s
     ///                        are finished.
-    func addChainedOperations(_ operations: [Operation], completionHandler: (() -> Void)? = nil) {
+    func addChainedOperations(_ operations: [Operation], completionHandler: ((ConcurrentOperation?) -> Void)? = nil) {
         for (index, operation) in operations.enumerated() {
             if index > 0 {
                 operation.addDependency(operations[index - 1])
@@ -171,17 +173,25 @@ public extension Queuer {
     ///   - operations: `Operation`s list.
     ///   - completionHandler: Completion block to be exectuted when all `Operation`s
     ///                        are finished.
-    func addChainedOperations(_ operations: Operation..., completionHandler: (() -> Void)? = nil) {
+    func addChainedOperations(_ operations: Operation..., completionHandler: ((ConcurrentOperation?) -> Void)? = nil) {
         addChainedOperations(operations, completionHandler: completionHandler)
     }
     
     /// Add a completion block to the queue.
     ///
     /// - Parameter completionHandler: Completion handler to be executed as last `Operation`.
-    func addCompletionHandler(_ completionHandler: @escaping () -> Void) {
-        let completionOperation = BlockOperation(block: completionHandler)
+    func addCompletionHandler(_ completionHandler: @escaping (ConcurrentOperation?) -> Void) {
+        let completionOperation: BlockOperation
+        
         if let lastOperation = operations.last {
+            completionOperation = BlockOperation {
+                completionHandler(lastOperation as? ConcurrentOperation)
+            }
             completionOperation.addDependency(lastOperation)
+        } else {
+            completionOperation = BlockOperation {
+                completionHandler(nil)
+            }
         }
         addOperation(completionOperation)
     }
